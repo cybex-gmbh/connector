@@ -13,7 +13,7 @@ class AddPublicKeyToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('connector.secondary_database.connection'))->table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('protector_public_key')->unique()->nullable()->comment(
                 'The sodium public key for the Protector package.'
             );

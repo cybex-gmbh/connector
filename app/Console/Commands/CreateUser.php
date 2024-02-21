@@ -14,9 +14,9 @@ class CreateUser extends Command
      * @var string
      */
     protected $signature = 'create:user
-                {name : The name of the user.}
-                {email : The e-mail of the user.}
-                {protectorPublicKey : The Protector public key for the user. Created with "php artisan protector:keys".}';
+                {protectorPublicKey : The Protector public key for the user.}
+                {--name= : The name of the user.}
+                {--email= : The e-mail of the user.}';
 
     /**
      * The console command description.
@@ -32,20 +32,20 @@ class CreateUser extends Command
      */
     public function handle(): int
     {
-        $name = $this->argument('name');
-        $email = $this->argument('email');
+        $name = $this->option('name');
+        $email = $this->option('email');
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->error('The provided email is not valid!');
             return Command::INVALID;
         }
 
-        if (User::whereEmail($email)->count()) {
+        if ($email && User::whereEmail($email)->count()) {
             $this->error('A user with the provided email already exists!');
             return Command::INVALID;
         }
 
-        if (User::whereName($name)->count()) {
+        if ($name && User::whereName($name)->count()) {
             $this->error('A user with the provided name already exists!');
             return Command::INVALID;
         }
@@ -55,7 +55,12 @@ class CreateUser extends Command
         * Since we do not want to create a Password for the user, but need to store something secure,
         * we will just generate a string of random bytes.
         */
-        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make(random_bytes(300))]);
+        $user = User::firstOrCreate(['name' => $name ?? 'Collector', 'email' => $email ?? 'collector@example.com'], ['password' => Hash::make(random_bytes(300))]);
+
+        if (!$user->wasRecentlyCreated) {
+            $this->error('Default user "Collector" was already created.');
+            return Command::INVALID;
+        }
 
         $this->newLine();
         $this->info(sprintf('Successfully created new user %s: %s (%s)', $user->getKey(), $user->name, $user->email));

@@ -1,7 +1,13 @@
 <?php
 
 return [
-    'secondary_database' => [
-        'connection' => env('SECONDARY_DATABASE_CONNECTION', 'sqlite')
+    'database' => [
+        'internal' => [
+            'connection' => env('INTERNAL_DATABASE_CONNECTION', 'sqlite')
+        ],
+
+        'external' => [
+            'connection' => env('EXTERNAL_DATABASE_CONNECTION', 'mysql')
+        ]
     ]
 ];

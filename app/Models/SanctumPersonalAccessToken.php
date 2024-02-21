@@ -43,6 +43,6 @@ class SanctumPersonalAccessToken extends PersonalAccessToken
     {
         parent::__construct($attributes);
 
-        $this->connection = config('connector.secondary_database.connection');
+        $this->connection = config('connector.database.internal.connection');
     }
 }
