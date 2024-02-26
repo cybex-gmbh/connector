@@ -38,7 +38,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('SQLITE_DATABASE_URL'),
-            'database' => env('SQLITE_DATABASE_PATH', database_path('connector.sqlite')),
+            'database' => sprintf('%s/connector.sqlite', env('SQLITE_DATABASE_FOLDER_PATH', database_path('sqlite'))),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
