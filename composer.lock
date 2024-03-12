@@ -132,16 +132,16 @@
         },
         {
             "name": "cybex/laravel-protector",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cybex-gmbh/laravel-protector.git",
-                "reference": "407f687e1939de2c11b6d7ebea602ced83e7e2fc"
+                "reference": "29ee0e8f1a93dad1db80f1e57449e96cdd17520a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cybex-gmbh/laravel-protector/zipball/407f687e1939de2c11b6d7ebea602ced83e7e2fc",
-                "reference": "407f687e1939de2c11b6d7ebea602ced83e7e2fc",
+                "url": "https://api.github.com/repos/cybex-gmbh/laravel-protector/zipball/29ee0e8f1a93dad1db80f1e57449e96cdd17520a",
+                "reference": "29ee0e8f1a93dad1db80f1e57449e96cdd17520a",
                 "shasum": ""
             },
             "require": {
@@ -201,9 +201,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cybex-gmbh/laravel-protector/issues",
-                "source": "https://github.com/cybex-gmbh/laravel-protector/tree/v2.1.0"
+                "source": "https://github.com/cybex-gmbh/laravel-protector/tree/v2.2.0"
             },
-            "time": "2024-02-13T11:19:12+00:00"
+            "time": "2024-03-12T15:33:26+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
