@@ -1,8 +1,9 @@
 # Connector
 
-Used as [Collector](https://github.com/cybex-gmbh/collector) target to back up a non-Laravel project using the [Laravel Protector package](https://github.com/cybex-gmbh/laravel-protector).
+Used as [Collector](https://github.com/cybex-gmbh/collector) target to back up a non-Laravel project using
+the [Laravel Protector package](https://github.com/cybex-gmbh/laravel-protector).
 
-This system uses an internal database for Laravel migrations. The database which is to be backed up is referred to as external. 
+This system uses an internal database for Laravel migrations. The database which is to be backed up is referred to as external.
 
 The database connections can be changed by the following `.env` keys:
 
@@ -16,10 +17,10 @@ SQLite is used as internal database by default and stored in `database/connector
 The external database is configured through the following `.env` keys:
 
 ```dotenv
-DB_HOST=connector-mysql-1
+DB_HOST=external
 DB_PORT=3306
-DB_DATABASE=connector
-DB_USERNAME=connector
+DB_DATABASE=external
+DB_USERNAME=external
 DB_PASSWORD=password
 ```
 
@@ -34,7 +35,7 @@ php artisan migrate
 2. Create a user
 
 > [!NOTE]
-> You need a Protector public key for this, which can be created with `php artisan protector:keys`. The private key should be stored in your client's `.env`.
+> The client which is trying to retrieve a database dump needs to provide their [Protector Public Key](https://github.com/cybex-gmbh/laravel-protector#on-the-client-machine).
 
 ```bash
 php artisan create:user <publicKey>
