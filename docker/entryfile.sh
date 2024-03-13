@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+chown -R application:application ${SQLITE_DATABASE_FOLDER_PATH:-/var/www/html/database/sqlite}
+
 if ${PULLPREVIEW:-false}; then
     php /var/www/html/artisan migrate --force
     php /var/www/html/artisan key:generate --force
