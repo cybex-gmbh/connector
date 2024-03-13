@@ -1,7 +1,6 @@
 version: '3.8'
 services:
   app:
-    user: '1000'
     container_name: ${APP_CONTAINER_NAME:-connector}
     build:
       context: .
