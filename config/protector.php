@@ -118,5 +118,5 @@ return [
     | The default is 120 seconds.
     |
     */
-    'httpTimeout' => env('PROTECTOR_HTTP_TIMEOUT', 120)
+    'httpTimeout' => env('PROTECTOR_HTTP_TIMEOUT', 120),
 ];
