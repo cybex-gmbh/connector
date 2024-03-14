@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
     networks:
-      - traefik
+      - shared
       - internal
     depends_on:
       mysql:
@@ -81,8 +81,8 @@ services:
 networks:
   internal:
     internal: true
-  traefik:
-    name: traefik
+  shared:
+    external: true
 
 volumes:
   mysql:
