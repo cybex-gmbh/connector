@@ -86,17 +86,12 @@ Store the returned information in your client's `.env`.
 
 ## [Pullpreview](https://github.com/pullpreview/action)
 
-When labeling a pull request with the "pullpreview" label, a staging environment is booted. To make this functional, some environment variables have to be stored in GitHub secrets:
+For more information take a look at the PullPreview section of the [github-workflow repository](https://github.com/cybex-gmbh/github-workflows#pullpreview).
 
-- PULLPREVIEW_AWS_ACCESS_KEY_ID
-- PULLPREVIEW_AWS_SECRET_ACCESS_KEY
+App specific GitHub Secrets:
+
 - PULLPREVIEW_CONNECTOR_USER_PUBLICKEY
 - PULLPREVIEW_CONNECTOR_PROTECTOR_AUTH_TOKEN_HASH
-
-#### AWS Credentials
-
-You need credentials of an IAM user that can manage AWS Lightsail. For a recommended configuration take a look at
-the [Pullpreview wiki](https://github.com/pullpreview/action/wiki/Recommended-AWS-Configuration).
 
 #### Keys and Token
 
@@ -124,3 +119,7 @@ php artisan protector:token <userId>
 ```
 
 Take the hash of the token from the `personal_access_tokens` table and save it in the `PULLPREVIEW_CONNECTOR_PROTECTOR_AUTH_TOKEN_HASH` secret.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
