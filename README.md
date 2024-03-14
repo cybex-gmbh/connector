@@ -43,7 +43,7 @@ services:
     container_name: connector
     image: cybexwebdev/connector:0
     volumes:
-      - connector-sqlite:/var/www/html/database/sqlite
+      - connector-sqlite:${SQLITE_DATABASE_FOLDER_PATH:-/var/www/html/database/sqlite}
       - ./.env:/var/www/html/.env:ro
 
 volumes:
@@ -51,10 +51,8 @@ volumes:
     driver: local
 ```
 
-> [!CAUTION]
-> The initial `php artisan migrate` command has to be run as the `application` user, else the SQLite file would be created as `root`.
-
 ### Cloning the repository
+
 To clone the repository use:
 
 ```bash
@@ -69,6 +67,13 @@ cp .env.example .env
 
 1. Migrate the internal database
 
+> [!CAUTION]
+> 
+> If using the Docker image, the initial `php artisan migrate` command has to be run as the `application` user, else the SQLite file would be created as `root`, which leads to
+> permission issues.
+> 
+> For this, connect with `docker compose exec -u application app bash`
+
 ```bash
 php artisan migrate
 ```
@@ -76,6 +81,7 @@ php artisan migrate
 2. Create a user
 
 > [!NOTE]
+> 
 > The client which is trying to retrieve a database dump needs to provide their [Protector Public Key](https://github.com/cybex-gmbh/laravel-protector#on-the-client-machine).
 
 ```bash
@@ -93,7 +99,7 @@ App specific GitHub Secrets:
 - PULLPREVIEW_CONNECTOR_USER_PUBLICKEY
 - PULLPREVIEW_CONNECTOR_PROTECTOR_AUTH_TOKEN_HASH
 
-#### Keys and Token
+#### Key and Token
 
 The database is seeded with a user with a Protector public key and a Sanctum personal access token by using the GitHub secrets.
 
@@ -101,6 +107,7 @@ The database is seeded with a user with a Protector public key and a Sanctum per
 >
 > You will need any existing setup with Laravel Protector for this. \
 > It is advised to save the created secrets securely in a separate location, as GitHub secrets cannot be viewed after saving.
+
 1. Create a Sodium keypair:
 
 ```bash
@@ -114,6 +121,7 @@ Save the provided public key in the `PULLPREVIEW_CONNECTOR_USER_PUBLICKEY` secre
 > [!NOTE]
 >
 > You will need an existing user for this, as a user id has to be provided.
+
 ```bash
 php artisan protector:token <userId>
 ```
